@@ -1,0 +1,11 @@
+To able to run the project please make sure you have the latest version of python and pip install
+
+pip install django
+
+cd /dansah
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver
