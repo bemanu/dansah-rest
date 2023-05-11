@@ -28,6 +28,7 @@ class Devotional(models.Model):
     devotion_created_at = models.DateTimeField(auto_now_add=True)
     devotion_updated_at = models.DateTimeField(auto_now_add=True)
     devotion_monthly = models.BooleanField("Monthly devotion", default=False)
+    devotion_daily = models.BooleanField("Monthly devotion", default=False)
 
     class Meta:
         ordering = ("devotion_title", "devotion_date")
