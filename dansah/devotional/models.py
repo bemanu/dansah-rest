@@ -21,3 +21,5 @@ class Devotional(models.Model):
     def __unicode__(self):
         return u'%s: /n %s' % (self.devotion_title,
                                self.devotion_message)
+
+
