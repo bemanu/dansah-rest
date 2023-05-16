@@ -1,9 +1,9 @@
-from django.shortcuts import render
-from rest_framework.response import Response
+from datetime import datetime
 from rest_framework import status, generics
+from rest_framework.response import Response
+
 from .models import Devotional
 from .serializers import DevotionalSerializer
-from datetime import datetime
 
 
 class Devotion(generics.GenericAPIView):
@@ -12,6 +12,8 @@ class Devotion(generics.GenericAPIView):
 
     def get(self, request):
         devotions = Devotional.objects.all()
+        if not devotions:
+            return Response({"status": "No devotion available"}, status=status.HTTP_404_NOT_FOUND)
         serializer = self.serializer_class(devotions, many=True)
         return Response({
             "status": "success",

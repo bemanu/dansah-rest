@@ -3,7 +3,7 @@
 /dansah/local_settings.py
 /dansah/static/
 /dansah/tmp/
-/dansah/media/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
