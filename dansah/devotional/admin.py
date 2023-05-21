@@ -4,7 +4,7 @@ from .models import Devotional
 
 
 @admin.register(Devotional)
-class PersonAdmin(admin.ModelAdmin):
+class DevotionalAdmin(admin.ModelAdmin):
     search_fields = ("devotion_title__startswith",)
     fields = ("devotion_title", "devotion_message", "devotion_date", "devotion_monthly")
     list_display = ("devotion_title", "devotion_message", "devotion_date", )
