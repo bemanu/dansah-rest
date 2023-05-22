@@ -4,5 +4,5 @@ from .views import Role
 
 urlpatterns = [
     path('', Role.as_view()),
-    path('<str:pk>', Role.as_view())
+    path('<uuid:pk>', Role.as_view())
 ]

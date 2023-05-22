@@ -13,8 +13,8 @@ class HomeSlider(models.Model):
     image_path = models.CharField("Image", max_length=255)
     image_path_1 = models.CharField("Image 1", max_length=255)
     image_path_2 = models.CharField("Image 2", max_length=255)
-    created_at = models.DateTimeField("Created at", auto_now_add=True)
-    updated_at = models.DateTimeField("update at")
+    created_at = models.DateField("Created at", auto_now_add=True)
+    updated_at = models.DateField("update at")
 
     class Meta:
         ordering = ("title", "created_at")
@@ -30,7 +30,7 @@ class Intro(models.Model):
     text = models.CharField("Intro text", max_length=1024)
     image_path = models.ImageField("Image", upload_to=upload_image_path, null=True, blank=True)
     icon_image_path = models.ImageField("Icon", upload_to=upload_image_path, null=True, blank=True)
-    created_at = models.DateTimeField("Created at", auto_now_add=True)
+    created_at = models.DateField("Created at", auto_now_add=True)
 
     class Meta:
         ordering = ("title", "sub_title", "text","created_at")

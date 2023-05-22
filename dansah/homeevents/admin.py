@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Events, HomeEvents
+from .models import Event, HomeEvent
 
 
-@admin.register(HomeEvents)
+@admin.register(HomeEvent)
 class HomeEventsAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
@@ -22,12 +22,12 @@ class HomeEventsAdmin(admin.ModelAdmin):
                    )
 
 
-@admin.register(Events)
+@admin.register(Event)
 class EventsAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
               "description",
-              "icon_image",
+              "icon_image_path",
               "date_detail_1",
               "date_detail_2"
               )

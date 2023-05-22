@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Activities, HomeActivities
+from .models import Activitie, HomeActivitie
 
 
-@admin.register(HomeActivities)
+@admin.register(HomeActivitie)
 class HomeActivitiesAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
@@ -25,12 +25,12 @@ class HomeActivitiesAdmin(admin.ModelAdmin):
                    "text")
 
 
-@admin.register(Activities)
+@admin.register(Activitie)
 class ActivitiesAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
               "alias_title",
-              "icon_image",
+              "icon_image_path",
               )
     list_display = ("title",
                     "alias_title",

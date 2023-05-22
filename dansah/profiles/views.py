@@ -5,7 +5,7 @@ from .models import Profiles
 from .serializers import ProfilesSerializer
 
 
-class Profiles(generics.GenericAPIView):
+class ProfilesView(generics.GenericAPIView):
     serializer_class = ProfilesSerializer
     queryset = Profiles.objects.all()
 
@@ -20,3 +20,21 @@ class Profiles(generics.GenericAPIView):
         })
 
 
+class ProfilesDetailView(generics.GenericAPIView):
+    serializer_class = ProfilesSerializer
+    queryset = Profiles.objects.all()
+
+    def get_profiles(self, pk):
+        try:
+            return Profiles.objects.get(pk=pk)
+        except:
+            return None
+
+    def get(self, request, pk):
+        profiles = self.get_profiles(pk=pk)
+        if profiles is None:
+            return Response({"status": "fail", "message": f"Profile with Id: {pk} not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(profiles)
+        return Response({"status": "success", "profiles": serializer.data})
