@@ -10,7 +10,8 @@ class ActivitiesSerializer(serializers.ModelSerializer):
 
 
 class HomeActivitiesSerializer(serializers.ModelSerializer):
-    activities = ActivitiesSerializer(many=True,read_only=True)
+    activities = ActivitiesSerializer(many=True, read_only=True)
+
     class Meta:
         model = HomeActivitie
         fields = '__all__'
