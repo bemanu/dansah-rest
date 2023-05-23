@@ -4,6 +4,10 @@ from django.db import models
 from .uploadfiles import upload_image_path
 
 
+class HomeActivitie:
+    pass
+
+
 class Activitie(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Intro tile", max_length=255)
@@ -25,7 +29,8 @@ class HomeActivitie(models.Model):
     text = models.CharField("Intro text", max_length=1024)
     background_image_path = models.ImageField("Background image", upload_to=upload_image_path, null=True, blank=True)
     icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
-    activities = models.ManyToManyField(to=Activitie)
+    # activitiekey = models.ForeignKey(Activitie, on_delete=models.CASCADE)
+    activities = models.ManyToManyField(Activitie)
     created_at = models.DateField("Created at", auto_now_add=True)
 
     class Meta:
