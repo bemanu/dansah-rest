@@ -13,7 +13,7 @@ class Activitie(models.Model):
     title = models.CharField("Intro tile", max_length=255)
     alias_title = models.CharField("Sub tile", max_length=255)
     icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
-    created_at = models.DateField("Created at", auto_now_add=True)
+    created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
         ordering = ("title", "alias_title")
@@ -31,7 +31,7 @@ class HomeActivitie(models.Model):
     icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
     # activitiekey = models.ForeignKey(Activitie, on_delete=models.CASCADE)
     activities = models.ManyToManyField(Activitie)
-    created_at = models.DateField("Created at", auto_now_add=True)
+    created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
         db_table = "homeactivities"
