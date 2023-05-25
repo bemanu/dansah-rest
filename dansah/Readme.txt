@@ -22,7 +22,7 @@ source myenv/bin/activate
 
 3. Install project dependencies:
 
-pip install -r requirements.tx
+pip install -r requirements.txt
 
 
 4. Perform database migrations:

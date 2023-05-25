@@ -1,3 +1,4 @@
 Django==4.2.1
 django_storages==1.13.2
 djangorestframework==3.14.0
+pillow==9.5.0
