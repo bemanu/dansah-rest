@@ -20,4 +20,4 @@ class Role(models.Model):
         return u'%s: /n %s  %s' % (self.type, self.description, self.created_at)
 
     def __str__(self):
-        return f"{self.title} - {self.type}"
+        return f"{self.type}"

@@ -28,9 +28,9 @@ class HomeMinistriesMaterial(models.Model):
     text = models.TextField("Text", max_length=1024)
     icon_image = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
     icon_image_path = models.CharField(upload_image_path, max_length=255)
-    ministries_material = models.ManyToManyField(to=MinistriesMaterial)
+    ministries_material = models.ManyToManyField(MinistriesMaterial)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
-    updated_at = models.DateTimeField("update at")
+
 
     class Meta:
         ordering = ("title", "sub_title", "created_at")

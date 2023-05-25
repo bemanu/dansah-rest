@@ -18,12 +18,10 @@ class HomeMinistriesMaterialAdmin(admin.ModelAdmin):
                     "text",
                     "icon_image_path",
                     "created_at",
-                    "updated_at"
                     )
     list_filter = ("title",
                    "sub_title",
-                   "created_at"
-
+                   "created_at",
                    )
 
 
@@ -32,7 +30,7 @@ class MinistriesMaterialAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
               "description",
-              "image",
+              "image_path",
               "redirect_link"
               )
     list_display = ("title",

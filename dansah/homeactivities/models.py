@@ -35,7 +35,6 @@ class HomeActivitie(models.Model):
     text = models.TextField("Text", max_length=1024)
     background_image_path = models.ImageField("Background image", upload_to=upload_image_path, null=True, blank=True)
     icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
-    activities_p = models.ForeignKey(Activitie, related_name='Activities', on_delete =models.CASCADE)
     activities = models.ManyToManyField(Activitie)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 

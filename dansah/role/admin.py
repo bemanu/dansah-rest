@@ -8,7 +8,7 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ("type__startswith",)
     fields = ("type",
               "description",
-              "icon_image"
+              "icon_image_path"
               )
     list_display = ("type",
                     "description",

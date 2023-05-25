@@ -27,8 +27,8 @@ class IntroAdmin(admin.ModelAdmin):
     fields = ("title",
               "sub_title",
               "text",
-              "image",
-              "icon_image")
+              "image_path",
+              "icon_image_path")
     list_display = ("title",
                     "sub_title",
                     "text",

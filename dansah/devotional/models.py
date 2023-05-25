@@ -18,3 +18,6 @@ class Devotional(models.Model):
 
     def __unicode__(self):
         return u'%s: /n %s' % (self.devotion_title, self.devotion_message)
+
+    def __str__(self):
+        return f"{self.title} \n {self.devotion_message}"

@@ -14,7 +14,6 @@ class HomeSlider(models.Model):
     image_path_1 = models.CharField("Image 1", max_length=255)
     image_path_2 = models.CharField("Image 2", max_length=255)
     created_at = models.DateField("Created at", auto_now_add=True)
-    updated_at = models.DateField("update at")
 
     class Meta:
         ordering = ("title", "created_at")

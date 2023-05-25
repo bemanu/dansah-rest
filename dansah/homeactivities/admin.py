@@ -27,10 +27,6 @@ class HomeActivitiesAdmin(admin.ModelAdmin):
                    "sub_title",
                    "text")
 
-    verbose_name = "Student APP"
-
-
-
 
 @admin.register(Activitie)
 class ActivitiesAdmin(admin.ModelAdmin):
@@ -39,8 +35,14 @@ class ActivitiesAdmin(admin.ModelAdmin):
               "alias_title",
               "icon_image_path",
 
+
               )
     list_display = ("title",
                     "alias_title",
-                    "icon_image_path")
-    list_filter = ("title", "alias_title")
+                    "icon_image_path",
+
+                    )
+    list_filter = ("title",
+                   "alias_title"
+                   )
+
