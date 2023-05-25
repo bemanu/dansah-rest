@@ -6,6 +6,8 @@ from .models import Activitie, HomeActivitie
 @admin.register(HomeActivitie)
 class HomeActivitiesAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
+    inline = (Activitie,)
+    filter_horizontal = ('activities',)
     fields = ("title",
               "sub_title",
               "text",
@@ -13,6 +15,7 @@ class HomeActivitiesAdmin(admin.ModelAdmin):
               "icon_image_path",
               "activities"
               )
+
     list_display = ("title",
                     "sub_title",
                     "text",
@@ -24,6 +27,10 @@ class HomeActivitiesAdmin(admin.ModelAdmin):
                    "sub_title",
                    "text")
 
+    verbose_name = "Student APP"
+
+
+
 
 @admin.register(Activitie)
 class ActivitiesAdmin(admin.ModelAdmin):
@@ -31,6 +38,7 @@ class ActivitiesAdmin(admin.ModelAdmin):
     fields = ("title",
               "alias_title",
               "icon_image_path",
+
               )
     list_display = ("title",
                     "alias_title",

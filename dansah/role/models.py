@@ -13,6 +13,11 @@ class Role(models.Model):
 
     class Meta:
         ordering = ("type", "description", "created_at")
+        verbose_name = "Role"
+        verbose_name_plural = "Roles"
 
     def __unicode__(self):
         return u'%s: /n %s  %s' % (self.type, self.description, self.created_at)
+
+    def __str__(self):
+        return f"{self.title} - {self.type}"

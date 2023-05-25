@@ -6,9 +6,11 @@ from .models import Event, HomeEvent
 @admin.register(HomeEvent)
 class HomeEventsAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
+    filter_horizontal = ('events',)
     fields = ("title",
               "sub_title",
-              "icon_image_path"
+              "icon_image_path",
+              "events"
 
               )
     list_display = ("title",

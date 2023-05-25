@@ -16,10 +16,14 @@ class Event(models.Model):
 
     class Meta:
         ordering = ("title", "description", "created_at")
+        verbose_name = "Event"
+        verbose_name_plural = "Events"
 
     def __unicode__(self):
         return u'%s: /n %s  %s' % (self.title, self.description, self.created_at)
 
+    def __str__(self):
+        return f"{self.title}"
 
 class HomeEvent(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -34,3 +38,6 @@ class HomeEvent(models.Model):
 
     def __unicode__(self):
         return u'%s: /n %s  %s ' % (self.title, self.sub_title, self.created_at)
+
+    def __str__(self):
+        return f"{self.title}"

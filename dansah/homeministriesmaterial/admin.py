@@ -6,10 +6,12 @@ from .models import MinistriesMaterial, HomeMinistriesMaterial
 @admin.register(HomeMinistriesMaterial)
 class HomeMinistriesMaterialAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
+    filter_horizontal = ('ministries_material',)
     fields = ("title",
               "sub_title",
               "text",
               "icon_image",
+              "ministries_material",
               )
     list_display = ("title",
                     "sub_title",
