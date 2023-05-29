@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'profiles',
     'quoteofday',
     'role',
+    'corsheaders'
 
 ]
 
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'dansah.urls'
@@ -115,6 +117,9 @@ USE_I18N = True
 USE_TZ = True
 
 USE_S3 = os.getenv('USE_S3') == 'FALSE'
+
+CORS_ORIGIN_ALLOW_ALL = True   
+
 
 if USE_S3:
     # aws settings
