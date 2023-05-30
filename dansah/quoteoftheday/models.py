@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from .uploadfiles import upload_image_path
+from .quoteofthedayuploadfiles import quote_of_the_day_upload_image_path
 
 
 class QuoteOfTheDay(models.Model):
@@ -9,8 +9,10 @@ class QuoteOfTheDay(models.Model):
     title = models.CharField("Intro tile", max_length=255)
     sub_title = models.CharField("Sub tile", max_length=255)
     text = models.TextField("Quote of the day text", max_length=1024)
-    icon_image_path = models.ImageField("Icon image",upload_to=upload_image_path, null=True, blank=True)
-    background_icon_image_path = models.ImageField("Backgorund image", upload_to=upload_image_path, null=True, blank=True)
+    source = models.CharField("Source", max_length=255)
+    icon_image_path = models.ImageField("Icon image", upload_to=quote_of_the_day_upload_image_path, null=True, blank=True)
+    background_icon_image_path = models.ImageField("Background image", upload_to=quote_of_the_day_upload_image_path, null=True,
+                                                   blank=True)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:

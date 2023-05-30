@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'homeministriesmaterial',
     'homeslider',
     'profiles',
-    'quoteofday',
+    'quoteoftheday',
     'role',
+    'powerliving',
+    'socialmedia',
 
 ]
 

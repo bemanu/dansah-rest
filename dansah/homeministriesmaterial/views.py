@@ -1,8 +1,8 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 
+from .homeministriesmaterialserializers import HomeMinistriesMaterialSerializer, MinistriesMaterialSerializer
 from .models import HomeMinistriesMaterial, MinistriesMaterial
-from .serializers import HomeMinistriesMaterialSerializer, MinistriesMaterialSerializer
 
 
 class HomeMinistriesMaterialView(generics.GenericAPIView):

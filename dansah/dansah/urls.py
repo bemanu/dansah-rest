@@ -31,8 +31,10 @@ urlpatterns = [
     path('api/homeministriesmaterial/', include('homeministriesmaterial.urls')),
     path('api/homeevents/', include('homeevents.urls')),
     path('api/profiles/', include('profiles.urls')),
-    path('api/quoteoftheday/', include('quoteofday.urls')),
+    path('api/quoteoftheday/', include('quoteoftheday.urls')),
     path('api/role/', include('role.urls')),
+    path('api/powerliving/', include('powerliving.urls')),
+    path('api/socialmedia/', include('socialmedia.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # imp for what you want to achieve.
 

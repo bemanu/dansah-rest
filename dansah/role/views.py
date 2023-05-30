@@ -2,7 +2,7 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 
 from .models import Role
-from .serializers import RoleSerializer
+from .roleserializers import RoleSerializer
 
 
 class Role(generics.GenericAPIView):

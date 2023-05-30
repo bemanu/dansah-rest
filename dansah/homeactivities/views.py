@@ -1,8 +1,8 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 
+from .homeactivitiesserializers import HomeActivitiesSerializer, ActivitiesSerializer
 from .models import HomeActivitie, Activitie
-from .serializers import HomeActivitiesSerializer, ActivitiesSerializer
 
 
 class HomeActivitiesView(generics.GenericAPIView):

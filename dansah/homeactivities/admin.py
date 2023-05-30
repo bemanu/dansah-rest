@@ -34,8 +34,6 @@ class ActivitiesAdmin(admin.ModelAdmin):
     fields = ("title",
               "alias_title",
               "icon_image_path",
-
-
               )
     list_display = ("title",
                     "alias_title",
