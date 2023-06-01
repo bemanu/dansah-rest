@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import Intro, HomeSlider
+from .views import HomeSliderView, HomeSliderDetailView, IntroView, IntroDetailView
 
 urlpatterns = [
-    path('', HomeSlider.as_view()),
-    path('<uuid:pk>', HomeSlider.as_view()),
-    path('intro', Intro.as_view()),
-    path('intro/<uuid:pk>', Intro.as_view())
+    path('', HomeSliderView.as_view()),
+    path('<uuid:pk>', HomeSliderDetailView.as_view()),
+    path('intro', IntroView.as_view()),
+    path('intro/<uuid:pk>', IntroDetailView.as_view())
 ]

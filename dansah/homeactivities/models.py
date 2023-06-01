@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from .uploadfiles import upload_image_path
+from .homeactivitiesuploadfiles import home_activities_upload_image_path
 
 
 class HomeActivitie:
@@ -12,7 +12,7 @@ class Activitie(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Activity tile", max_length=255)
     alias_title = models.CharField("Sub tile", max_length=255)
-    icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
+    icon_image_path = models.ImageField("Icon image", upload_to=home_activities_upload_image_path, null=True, blank=True)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
@@ -33,8 +33,8 @@ class HomeActivitie(models.Model):
     title = models.CharField("Home activity tile", max_length=255)
     sub_title = models.CharField("Sub tile", max_length=255)
     text = models.TextField("Text", max_length=1024)
-    background_image_path = models.ImageField("Background image", upload_to=upload_image_path, null=True, blank=True)
-    icon_image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
+    background_image_path = models.ImageField("Background image", upload_to=home_activities_upload_image_path, null=True, blank=True)
+    icon_image_path = models.ImageField("Icon image", upload_to=home_activities_upload_image_path, null=True, blank=True)
     activities = models.ManyToManyField(Activitie)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 

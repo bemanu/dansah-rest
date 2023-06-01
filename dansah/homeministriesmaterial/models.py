@@ -1,14 +1,14 @@
 import uuid
 from django.db import models
 
-from .uploadfiles import upload_image_path
+from .homeministriesmaterialuploadfiles import home_ministries_material_upload_image_path
 
 
 class MinistriesMaterial(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Ministries material title", max_length=255)
     description = models.CharField("Description", max_length=1024)
-    image_path = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
+    image_path = models.ImageField("Icon image", upload_to=home_ministries_material_upload_image_path, null=True, blank=True)
     redirect_link = models.CharField(max_length=255)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
@@ -26,8 +26,8 @@ class HomeMinistriesMaterial(models.Model):
     title = models.CharField("Intro tile", max_length=255)
     sub_title = models.CharField("Sub-title", max_length=255)
     text = models.TextField("Text", max_length=1024)
-    icon_image = models.ImageField("Icon image", upload_to=upload_image_path, null=True, blank=True)
-    icon_image_path = models.CharField(upload_image_path, max_length=255)
+    icon_image = models.ImageField("Icon image", upload_to=home_ministries_material_upload_image_path, null=True, blank=True)
+    icon_image_path = models.CharField(home_ministries_material_upload_image_path, max_length=255)
     ministries_material = models.ManyToManyField(MinistriesMaterial)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 

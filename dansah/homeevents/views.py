@@ -1,8 +1,8 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 
+from .homeeventsserializers import HomeEventsSerializer, EventsSerializer
 from .models import HomeEvent, Event
-from .serializers import HomeEventsSerializer, EventsSerializer
 
 
 class HomeEventsView(generics.GenericAPIView):

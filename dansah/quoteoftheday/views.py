@@ -2,7 +2,7 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 
 from .models import QuoteOfTheDay
-from .serializers import QuoteOfTheDaySerializer
+from .quoteofthedayserializers import QuoteOfTheDaySerializer
 
 
 class QuoteOfTheDayView(generics.GenericAPIView):

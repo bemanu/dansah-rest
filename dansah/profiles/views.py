@@ -2,7 +2,7 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 
 from .models import Profiles
-from .serializers import ProfilesSerializer
+from .profilesserializers import ProfilesSerializer
 
 
 class ProfilesView(generics.GenericAPIView):
