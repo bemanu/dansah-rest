@@ -9,7 +9,7 @@ class PersonAdmin(admin.ModelAdmin):
     fields = ("title",
               "sub_title",
               "text",
-              "source"
+              "source",
               "icon_image_path",
               "background_icon_image_path",
               )
