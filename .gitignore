@@ -77,3 +77,6 @@ target
 /dansah/quoteoftheday/views.py
 /dansah/role/views.py
 /myenv
+
+/db.sqlite3
+*.sqlite3
