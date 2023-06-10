@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 from .socialmediauploadfiles import social_media_upload_image_path
@@ -6,7 +7,7 @@ from .socialmediauploadfiles import social_media_upload_image_path
 
 class SocialMedia(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField("Social media", max_length=255)
+    title = models.CharField("Social media title", max_length=255)
     icon_name = models.CharField("Icon name", max_length=1024)
     image_path = models.ImageField("Icon image", upload_to=social_media_upload_image_path, null=True, blank=True)
     redirect_link = models.CharField(max_length=255)
@@ -24,12 +25,12 @@ class SocialMedia(models.Model):
 
 class Media(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField("Intro tile", max_length=255)
+    title = models.CharField("Tile", max_length=255)
     sub_title = models.CharField("Sub-title", max_length=255)
-    paragraph_title = models.CharField("Sub-title", max_length=255)
+    paragraph_title = models.CharField("Paragraph-title", max_length=255)
     description_1 = models.TextField("Description 1", max_length=1024)
     description_2 = models.TextField("Description 2", max_length=1024)
-    image = models.ImageField("Icon image", upload_to=social_media_upload_image_path, null=True, blank=True)
+    image = models.ImageField("Image", upload_to=social_media_upload_image_path, null=True, blank=True)
     social_media = models.ManyToManyField(to=SocialMedia)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
