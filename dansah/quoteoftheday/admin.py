@@ -9,8 +9,9 @@ class PersonAdmin(admin.ModelAdmin):
     fields = ("title",
               "sub_title",
               "text",
+              "source"
               "icon_image_path",
-              "background_icon_image_path"
+              "background_icon_image_path",
               )
     list_display = ("title",
                     "sub_title",
