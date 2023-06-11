@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 from .quoteofthedayuploadfiles import quote_of_the_day_upload_image_path
@@ -13,6 +14,7 @@ class QuoteOfTheDay(models.Model):
     icon_image_path = models.ImageField("Icon image", upload_to=quote_of_the_day_upload_image_path, null=True, blank=True)
     background_icon_image_path = models.ImageField("Background image", upload_to=quote_of_the_day_upload_image_path, null=True,
                                                    blank=True)
+    date = models.DateTimeField("Quote date")
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
