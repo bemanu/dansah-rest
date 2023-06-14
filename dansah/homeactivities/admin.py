@@ -13,7 +13,7 @@ class HomeActivitiesAdmin(admin.ModelAdmin):
               "text",
               "background_image_path",
               "icon_image_path",
-              "activities"
+              "activities",
               )
 
     list_display = ("title",
@@ -43,4 +43,3 @@ class ActivitiesAdmin(admin.ModelAdmin):
     list_filter = ("title",
                    "alias_title"
                    )
-

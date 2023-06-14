@@ -11,10 +11,12 @@ class QuoteOfTheDay(models.Model):
     sub_title = models.CharField("Sub tile", max_length=255)
     text = models.TextField("Quote of the day text", max_length=1024)
     source = models.CharField("Source", max_length=255)
-    icon_image_path = models.ImageField("Icon image", upload_to=quote_of_the_day_upload_image_path, null=True, blank=True)
-    background_icon_image_path = models.ImageField("Background image", upload_to=quote_of_the_day_upload_image_path, null=True,
+    icon_image_path = models.ImageField("Icon image", upload_to=quote_of_the_day_upload_image_path, null=True,
+                                        blank=True)
+    background_icon_image_path = models.ImageField("Background image", upload_to=quote_of_the_day_upload_image_path,
+                                                   null=True,
                                                    blank=True)
-    date = models.DateTimeField("Quote date")
+    quote_date = models.DateField("Quote date")
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:

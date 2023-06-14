@@ -10,6 +10,7 @@ class PersonAdmin(admin.ModelAdmin):
               "sub_title",
               "text",
               "source",
+              "quote_date",
               "icon_image_path",
               "background_icon_image_path",
               )
