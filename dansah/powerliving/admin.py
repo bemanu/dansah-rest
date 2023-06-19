@@ -28,10 +28,14 @@ class PowerLivingAdmin(admin.ModelAdmin):
 class MonthlyPowerLivingAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = ("title",
+              "description",
               "cover_image_path",
+              "document",
               )
     list_display = ("title",
+                    "description",
                     "cover_image_path",
+                    "document",
                     "created_at",
 
                     )
