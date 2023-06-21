@@ -1,4 +1,6 @@
 import uuid
+
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 from .powerlivinguploadfiles import power_living_upload_image_path
@@ -7,7 +9,9 @@ from .powerlivinguploadfiles import power_living_upload_image_path
 class MonthlyPowerLiving(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Monthly Power Living tile", max_length=255)
+    description = models.TextField("Description", max_length=1024, blank=True)
     cover_image_path = models.ImageField("Cover image", upload_to=power_living_upload_image_path, null=True, blank=True)
+    document = models.FileField("File upload", upload_to='powerlivingfiles/pdfs/', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
     created_at = models.DateField("Created at", auto_now_add=True)
 
     class Meta:
