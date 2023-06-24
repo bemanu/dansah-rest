@@ -19,12 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-620=f6+r$hnusy%+p%(#=^%7$8v%+nhl#kaoc%bk0_kctdj5u0'
+
+with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f: SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 # Application definition
 INSTALLED_APPS = [
@@ -67,7 +68,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200"
 ]
 CORS_ALLOW_ALL = False
-
 
 ROOT_URLCONF = 'dansah.urls'
 
@@ -129,8 +129,7 @@ USE_TZ = True
 
 USE_S3 = os.getenv('USE_S3') == 'FALSE'
 
-CORS_ORIGIN_ALLOW_ALL = True   
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 if USE_S3:
     # aws settings
@@ -150,9 +149,19 @@ else:
 
     STATIC_URL = 'static/'
     MEDIA_URL = '/media/'
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+    # Default primary key field type
+    # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'media_root')
+
+# HTTPS settings
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+
+# HSTS settings
+SECURE_HSTS_SECONDS = 3153600  # 1 year
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
