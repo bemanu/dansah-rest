@@ -31,6 +31,10 @@ nosetests.xml
 coverage.xml
 *.cover
 
+# Text backup files
+*.bak
+
+
 # Translations
 *.pot
 
@@ -45,6 +49,7 @@ target
 
 /myenv
 
+# Database
 *.sqlite3
 /*.sqlite3
 /db.sqlite3
@@ -52,3 +57,5 @@ target
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+
+
