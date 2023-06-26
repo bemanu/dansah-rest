@@ -13,6 +13,10 @@
 }],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static_cdn/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "dansah/wsgi.py"
     }
