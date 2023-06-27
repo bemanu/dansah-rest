@@ -103,6 +103,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'URL':'postgresql://postgres:XN8w1Bm4A2mTfUUci1ZV@containers-us-west-129.railway.app:7643/railway',
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'XN8w1Bm4A2mTfUUci1ZV',
