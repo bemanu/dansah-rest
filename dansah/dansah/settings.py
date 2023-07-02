@@ -28,7 +28,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['dansah.com/admin']
+ALLOWED_HOSTS = ['dansah-rest-njbpzoqhm-bemanu.vercel.app','dansah.com/admin']
 
 # Application definition
 INSTALLED_APPS = [
