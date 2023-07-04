@@ -31,9 +31,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'dansah-rest-njbpzoqhm-bemanu.vercel.app',
-    'dansah.com/admin',
-    "https://dansah-rest.vercel.app",
+    '*'
 
 ]
 
