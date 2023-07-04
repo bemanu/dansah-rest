@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+# 620=f6+r$hnusy%+p%(#=^%7$8v%+nhl#kaoc%bk0_kctdj5u0dnsh
+
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = os.environ["SECRET_KEY"]
@@ -32,7 +34,7 @@ ALLOWED_HOSTS = [
     'dansah-rest-njbpzoqhm-bemanu.vercel.app',
     'dansah.com/admin',
     "https://dansah-rest.vercel.app",
-   
+
 ]
 
 # Application definition
