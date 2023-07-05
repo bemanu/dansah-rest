@@ -16,7 +16,7 @@ class PowerLivingView(generics.GenericAPIView):
         serializer = self.serializer_class(power_living, many=True)
         return Response({
             "status": "success",
-            "power_living": serializer.data
+            "result": serializer.data
         })
 
 
@@ -37,7 +37,7 @@ class PowerLivingDetailView(generics.GenericAPIView):
                             status=status.HTTP_404_NOT_FOUND)
 
         serializer = self.serializer_class(power_living)
-        return Response({"status": "success", "power_living": serializer.data})
+        return Response({"status": "success", "result": serializer.data})
 
 
 class MonthlyPowerLivingView(generics.GenericAPIView):
