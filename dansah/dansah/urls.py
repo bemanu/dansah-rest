@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/powerliving/', include('powerliving.urls')),
     path('api/socialmedia/', include('socialmedia.urls')),
     path('api/prayerconnect/', include('prayerconnect.urls')),
+    path('api/prayercity/', include('prayercity.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # imp for what you want to achieve.
 

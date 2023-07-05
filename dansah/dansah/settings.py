@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'role',
     'powerliving',
     'socialmedia',
-    'prayerconnect'
+    'prayerconnect', 
+    'prayercity'
 ]
 
 MIDDLEWARE = [
