@@ -19,23 +19,25 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-admin.site.site_header = 'Dansah Admin'
-#Add the below line
-admin.site.index_title = 'Dansah  App'
+admin.site.site_header = "Dansah Admin"
+# Add the below line
+admin.site.index_title = "Dansah  App"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/homeslider/', include('homeslider.urls')),
-    path('api/homeactivities/', include('homeactivities.urls')),
-    path('api/homeministriesmaterial/', include('homeministriesmaterial.urls')),
-    path('api/homeevents/', include('homeevents.urls')),
-    path('api/profiles/', include('profiles.urls')),
-    path('api/quoteoftheday/', include('quoteoftheday.urls')),
-    path('api/role/', include('role.urls')),
-    path('api/powerliving/', include('powerliving.urls')),
-    path('api/socialmedia/', include('socialmedia.urls')),
-    path('api/prayerconnect/', include('prayerconnect.urls')),
-    path('api/prayercity/', include('prayercity.urls')),
+    path("admin/", admin.site.urls),
+    path("api/homeslider/", include("homeslider.urls")),
+    path("api/homeactivities/", include("homeactivities.urls")),
+    path("api/homeministriesmaterial/", include("homeministriesmaterial.urls")),
+    path("api/homeevents/", include("homeevents.urls")),
+    path("api/profiles/", include("profiles.urls")),
+    path("api/quoteoftheday/", include("quoteoftheday.urls")),
+    path("api/role/", include("role.urls")),
+    path("api/powerliving/", include("powerliving.urls")),
+    path("api/socialmedia/", include("socialmedia.urls")),
+    path("api/prayerconnect/", include("prayerconnect.urls")),
+    path("api/prayercity/", include("prayercity.urls")),
+    path("api/leadershipinstitute/", include("leadershipinstitute.urls")),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # imp for what you want to achieve.
-
+urlpatterns += static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)  # imp for what you want to achieve.
