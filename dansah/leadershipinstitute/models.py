@@ -16,8 +16,14 @@ LEVELS = (
 
 class Course(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField("Title", max_length=255)
-    level = models.CharField(max_length=255, choices=LEVELS, default="Basic")
+    name = models.CharField("Name", max_length=255)
+    level = models.ForeignKey("Category", on_delete=models.CASCADE, blank=False)
+    short_description = models.CharField(
+        "Short Description", max_length=255, default="", blank=False
+    )
+    full_description = models.TextField(
+        "Full Description", max_length=1024, default="", blank=False
+    )
     cover_image_path = models.ImageField(
         "Cover image",
         upload_to=leadership_institute_course_upload_image_path,
@@ -27,19 +33,19 @@ class Course(models.Model):
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
-        ordering = ("title", "created_at")
+        ordering = ("name", "created_at")
         verbose_name_plural = "Courses"
 
     def __unicode__(self):
-        return "%s: /n %s  %s" % (self.title, self.created_at)
+        return "%s: /n %s  %s" % (self.name, self.created_at)
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.name}"
 
 
-class Categories(models.Model):
+class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField("Title", max_length=255)
+    name = models.CharField("Name", max_length=255)
     cover_image_path = models.ImageField(
         "Cover image",
         upload_to=leadership_institute_categories_upload_image_path,
@@ -49,14 +55,14 @@ class Categories(models.Model):
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
-        ordering = ("title", "created_at")
-        verbose_name_plural = "Courses"
+        ordering = ("name", "created_at")
+        verbose_name_plural = "Categories"
 
     def __unicode__(self):
-        return "%s: /n %s  %s" % (self.title, self.created_at)
+        return "%s: /n %s  %s" % (self.name, self.created_at)
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.name}"
 
 
 class LeadershipInstitute(models.Model):
@@ -67,6 +73,7 @@ class LeadershipInstitute(models.Model):
     full_description = models.TextField(
         "Full Description", max_length=1024, blank=False
     )
+    categories = models.ManyToManyField(Category)
     action_text = models.CharField("Action Text", max_length=255, blank=True)
     cover_image_path = models.ImageField(
         "Cover image",
@@ -74,7 +81,6 @@ class LeadershipInstitute(models.Model):
         null=True,
         blank=True,
     )
-    courses = models.ManyToManyField(Course)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
     class Meta:
