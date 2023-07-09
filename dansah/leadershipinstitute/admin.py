@@ -1,6 +1,80 @@
 from django.contrib import admin
 
-from .models import Course, Category, LeadershipInstitute
+from .models import (
+    Course,
+    Video,
+    Assesment,
+    Reading,
+    Assignment,
+    Category,
+    Material,
+    LeadershipInstitute,
+)
+
+
+@admin.register(Assignment)
+class AssignmentAdmin(admin.ModelAdmin):
+    search_fields = ("title__startswith",)
+    fields = (
+        "title",
+        "document",
+    )
+    list_display = ("title", "document", "created_at")
+    list_filter = ("title", "created_at")
+
+
+@admin.register(Assesment)
+class AssesmentAdmin(admin.ModelAdmin):
+    search_fields = ("title__startswith",)
+    fields = (
+        "title",
+        "document",
+    )
+    list_display = ("title", "document", "created_at")
+    list_filter = ("title", "created_at")
+
+
+@admin.register(Reading)
+class ReadingAdmin(admin.ModelAdmin):
+    search_fields = ("title__startswith",)
+    fields = (
+        "title",
+        "document",
+    )
+    list_display = ("title", "document", "created_at")
+    list_filter = ("title", "created_at")
+
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    search_fields = ("title__startswith",)
+    fields = (
+        "title",
+        "link",
+    )
+    list_display = ("title", "link", "created_at")
+    list_filter = ("title", "created_at")
+
+
+@admin.register(Material)
+class MaterialAdmin(admin.ModelAdmin):
+    search_fields = ("name__startswith",)
+    filter_horizontal = ("videos", "readings", "assesments", "assignments")
+    fields = (
+        "name",
+        "videos",
+        "readings",
+        "assesments",
+        "assignments",
+    )
+    list_display = (
+        "name",
+        "created_at",
+    )
+    list_filter = (
+        "name",
+        "created_at",
+    )
 
 
 @admin.register(Course)
@@ -12,6 +86,7 @@ class CourseAdmin(admin.ModelAdmin):
         "short_description",
         "full_description",
         "cover_image_path",
+        "materials",
     )
     list_display = ("name", "level", "created_at")
     list_filter = ("name", "created_at")
