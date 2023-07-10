@@ -12,12 +12,12 @@ class MediaView(generics.GenericAPIView):
     def get(self, request):
         media = Media.objects.all()
         if not media:
-            return Response({"status": "No medial available"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "No social media available"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
         serializer = self.serializer_class(media, many=True)
-        return Response({
-            "status": "success",
-            "media": serializer.data
-        })
+        return Response({"status": "success", "result": serializer.data})
 
 
 class MediaDetailView(generics.GenericAPIView):
@@ -33,8 +33,10 @@ class MediaDetailView(generics.GenericAPIView):
     def get(self, request, pk):
         media = self.get_home_ministries_material(pk=pk)
         if media is None:
-            return Response({"status": "fail", "message": f"Media data with Id: {pk} not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "fail", "message": f"Media data with Id: {pk} not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
         serializer = self.serializer_class(media)
         return Response({"status": "success", "media": serializer.data})
@@ -47,12 +49,12 @@ class SocialMediaView(generics.GenericAPIView):
     def get(self, request):
         social_media = SocialMedia.objects.all()
         if not social_media:
-            return Response({"status": "No social media data available"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "No social media data available"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
         serializer = self.serializer_class(social_media, many=True)
-        return Response({
-            "status": "success",
-            "social_media": serializer.data
-        })
+        return Response({"status": "success", "social_media": serializer.data})
 
 
 class SocialMediaDetailView(generics.GenericAPIView):
@@ -68,8 +70,10 @@ class SocialMediaDetailView(generics.GenericAPIView):
     def get(self, request, pk):
         social_media = self.get_ministries_material(pk=pk)
         if social_media is None:
-            return Response({"status": "fail", "message": f"Social media with Id: {pk} not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "fail", "message": f"Social media with Id: {pk} not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
         serializer = self.serializer_class(social_media)
         return Response({"status": "success", "social_media": serializer.data})
