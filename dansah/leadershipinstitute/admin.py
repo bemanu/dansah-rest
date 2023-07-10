@@ -17,9 +17,10 @@ class AssignmentAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = (
         "title",
+        "description",
         "document",
     )
-    list_display = ("title", "document", "created_at")
+    list_display = ("title", "description", "created_at")
     list_filter = ("title", "created_at")
 
 
@@ -29,8 +30,9 @@ class AssesmentAdmin(admin.ModelAdmin):
     fields = (
         "title",
         "document",
+        "description",
     )
-    list_display = ("title", "document", "created_at")
+    list_display = ("title", "description", "created_at")
     list_filter = ("title", "created_at")
 
 
@@ -40,8 +42,10 @@ class ReadingAdmin(admin.ModelAdmin):
     fields = (
         "title",
         "document",
+        "description",
+        "cover_image_path",
     )
-    list_display = ("title", "document", "created_at")
+    list_display = ("title", "description", "created_at")
     list_filter = ("title", "created_at")
 
 
@@ -50,9 +54,10 @@ class VideoAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     fields = (
         "title",
+        "description",
         "link",
     )
-    list_display = ("title", "link", "created_at")
+    list_display = ("title", "description", "created_at")
     list_filter = ("title", "created_at")
 
 

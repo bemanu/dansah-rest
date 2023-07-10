@@ -18,8 +18,11 @@ LEVELS = (
 class Assesment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Title", max_length=255)
+    description = models.TextField(
+        "Description", max_length=1024, default="", blank=True
+    )
     document = models.FileField(
-        "Upload Pdf",
+        "Upload Assesment Document",
         upload_to="leadershipinstitute/materials/assesments",
         null=True,
         blank=True,
@@ -29,7 +32,7 @@ class Assesment(models.Model):
 
     class Meta:
         ordering = ("title", "created_at")
-        verbose_name_plural = "Assignments"
+        verbose_name_plural = "Assesments"
 
     def __unicode__(self):
         return "%s: /n %s  %s" % (self.title, self.created_at)
@@ -41,8 +44,11 @@ class Assesment(models.Model):
 class Assignment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Title", max_length=255)
+    description = models.TextField(
+        "Description", max_length=1024, default="", blank=True
+    )
     document = models.FileField(
-        "Upload Pdf",
+        "Upload Assignment Document",
         upload_to="leadershipinstitute/materials/assignments",
         null=True,
         blank=True,
@@ -64,12 +70,21 @@ class Assignment(models.Model):
 class Reading(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Title", max_length=255)
+    description = models.TextField(
+        "Description", max_length=1024, default="", blank=False
+    )
     document = models.FileField(
         "Upload Pdf",
         upload_to="leadershipinstitute/materials/readings",
         null=True,
         blank=True,
         validators=[FileExtensionValidator(allowed_extensions=["pdf"])],
+    )
+    cover_image_path = models.ImageField(
+        "Cover image",
+        upload_to=leadership_institute_course_upload_image_path,
+        null=True,
+        blank=True,
     )
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
@@ -87,6 +102,9 @@ class Reading(models.Model):
 class Video(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Title", max_length=255)
+    description = models.TextField(
+        "Description", max_length=1024, default="", blank=False
+    )
     link = models.CharField("Link", max_length=255)
     created_at = models.DateTimeField("Created at", auto_now_add=True)
 
