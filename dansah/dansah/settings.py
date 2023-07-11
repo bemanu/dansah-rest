@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "prayerconnect",
     "prayercity",
     "leadershipinstitute",
+    "contact",
 ]
 
 MIDDLEWARE = [
