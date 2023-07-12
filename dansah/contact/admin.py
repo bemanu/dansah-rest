@@ -24,16 +24,13 @@ class LocationAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
     filter_horizontal = ("locations",)
-    fields = (
-        "name",
-        "locations",
-    )
+    fields = ("title", "locations", "cover_image_path")
     list_display = (
-        "name",
+        "title",
         "created_at",
     )
     list_filter = (
-        "name",
+        "title",
         "locations",
         "created_at",
     )
