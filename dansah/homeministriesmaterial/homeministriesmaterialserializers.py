@@ -10,7 +10,7 @@ class MinistriesMaterialSerializer(serializers.ModelSerializer):
 
 
 class HomeMinistriesMaterialSerializer(serializers.ModelSerializer):
-    ministries_material = MinistriesMaterialSerializer(many=True, read_only=True)
+    materials = MinistriesMaterialSerializer(many=True, read_only=True)
     class Meta:
         model = HomeMinistriesMaterial
         fields = '__all__'
