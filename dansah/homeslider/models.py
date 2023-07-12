@@ -7,12 +7,15 @@ from .homeslidersuploadfiles import home_sliders_upload_image_path
 class HomeSlider(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField("Home slider title", max_length=255)
-    image = models.ImageField("Image", upload_to=home_sliders_upload_image_path, null=True, blank=True)
-    image1 = models.ImageField("Image 1", upload_to=home_sliders_upload_image_path, null=True, blank=True)
-    image2 = models.ImageField("Image 2", upload_to=home_sliders_upload_image_path, null=True, blank=True)
-    image_path = models.CharField("Image", max_length=255)
-    image_path_1 = models.CharField("Image 1", max_length=255)
-    image_path_2 = models.CharField("Image 2", max_length=255)
+    image1 = models.ImageField(
+        "Image 1", upload_to=home_sliders_upload_image_path, null=True, blank=True
+    )
+    image2 = models.ImageField(
+        "Image 2", upload_to=home_sliders_upload_image_path, null=True, blank=True
+    )
+    image3 = models.ImageField(
+        "Image 3", upload_to=home_sliders_upload_image_path, null=True, blank=True
+    )
     created_at = models.DateField("Created at", auto_now_add=True)
 
     class Meta:
@@ -21,8 +24,7 @@ class HomeSlider(models.Model):
         verbose_name_plural = "Home Sliders"
 
     def __unicode__(self):
-        return u'%s: /n %s' % (self.title, self.created_at)
-
+        return "%s: /n %s" % (self.title, self.created_at)
 
     def __str__(self):
         return f"{self.title}"
@@ -32,8 +34,12 @@ class Intro(models.Model):
     title = models.CharField("Intro tile", max_length=255)
     sub_title = models.CharField("Sub tile", max_length=255)
     text = models.CharField("Intro text", max_length=1024)
-    image_path = models.ImageField("Image", upload_to=home_sliders_upload_image_path, null=True, blank=True)
-    icon_image_path = models.ImageField("Icon", upload_to=home_sliders_upload_image_path, null=True, blank=True)
+    image_path = models.ImageField(
+        "Image", upload_to=home_sliders_upload_image_path, null=True, blank=True
+    )
+    icon_image_path = models.ImageField(
+        "Icon", upload_to=home_sliders_upload_image_path, null=True, blank=True
+    )
     created_at = models.DateField("Created at", auto_now_add=True)
 
     class Meta:
@@ -42,7 +48,12 @@ class Intro(models.Model):
         verbose_name_plural = "Intros"
 
     def __unicode__(self):
-        return u'%s: /n %s  %s %s' % (self.title, self.sub_title, self.text, self.created_at)
+        return "%s: /n %s  %s %s" % (
+            self.title,
+            self.sub_title,
+            self.text,
+            self.created_at,
+        )
 
     def __str__(self):
         return f"{self.title}"
