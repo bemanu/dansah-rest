@@ -12,12 +12,11 @@ class HomeEventsView(generics.GenericAPIView):
     def get(self, request):
         home_events = HomeEvent.objects.all()
         if not home_events:
-            return Response({"status": "No home sliders available"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "No home events available"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = self.serializer_class(home_events, many=True)
-        return Response({
-            "status": "success",
-            "homeevents": serializer.data
-        })
+        return Response({"status": "success", "result": serializer.data})
 
 
 class HomeEventsDetailView(generics.GenericAPIView):
@@ -33,11 +32,13 @@ class HomeEventsDetailView(generics.GenericAPIView):
     def get(self, request, pk):
         home_events = self.get_home_events(pk=pk)
         if home_events is None:
-            return Response({"status": "fail", "message": f"HomeEvents with Id: {pk} not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "fail", "message": f"HomeEvents with Id: {pk} not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
         serializer = self.serializer_class(home_events)
-        return Response({"status": "success", "homeevents": serializer.data})
+        return Response({"status": "success", "result": serializer.data})
 
 
 class EventsView(generics.GenericAPIView):
@@ -47,12 +48,11 @@ class EventsView(generics.GenericAPIView):
     def get(self, request):
         events = Event.objects.all()
         if not events:
-            return Response({"status": "No events available"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "No events available"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = self.serializer_class(events, many=True)
-        return Response({
-            "status": "success",
-            "events": serializer.data
-        })
+        return Response({"status": "success", "result": serializer.data})
 
 
 class EventsDetailView(generics.GenericAPIView):
@@ -68,8 +68,10 @@ class EventsDetailView(generics.GenericAPIView):
     def get(self, request, pk):
         events = self.get_events(pk=pk)
         if events is None:
-            return Response({"status": "fail", "message": f"Events with Id: {pk} not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"status": "fail", "message": f"Events with Id: {pk} not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
         serializer = self.serializer_class(events)
-        return Response({"status": "success", "events": serializer.data})
+        return Response({"status": "success", "result": serializer.data})
