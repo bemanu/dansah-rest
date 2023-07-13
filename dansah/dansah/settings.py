@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-620=f6+r$hnusy%+p%(#=^%7$8v%+nhl#kaoc%bk0_kctdj5u0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -94,10 +94,26 @@ WSGI_APPLICATION = 'dansah.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+
+            'POSTGRES_URL': os.getenv('POSTGRES_URL'),
+            'POSTGRES_PRISMA_URL': os.getenv('POSTGRES_PRISMA_URL'),
+            'POSTGRES_URL_NON_POOLING': os.getenv('POSTGRES_URL_NON_POOLING'),
+            'POSTGRES_USER': os.getenv('POSTGRES_USER'),
+            'POSTGRES_HOST': os.getenv('POSTGRES_HOST'),
+            'POSTGRES_PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            'POSTGRES_DATABASE': os.getenv('POSTGRES_DATABASE'),
+
+ }
 }
+# DATABASES = {
+#     'default': {
+#
+#
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
