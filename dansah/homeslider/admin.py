@@ -14,13 +14,9 @@ class HomeSliderAdmin(admin.ModelAdmin):
 @admin.register(Intro)
 class IntroAdmin(admin.ModelAdmin):
     search_fields = ("title__startswith",)
-    fields = ("title", "sub_title", "text", "image_path", "icon_image_path")
+    fields = ("title", "description", "cover_image_path")
     list_display = (
         "title",
-        "sub_title",
-        "text",
-        "image_path",
-        "icon_image_path",
         "created_at",
     )
-    list_filter = ("title", "sub_title", "created_at")
+    list_filter = ("title", "description", "created_at")

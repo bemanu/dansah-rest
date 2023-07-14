@@ -53,26 +53,4 @@ class IntroView(generics.GenericAPIView):
                 {"status": "No intro available"}, status=status.HTTP_404_NOT_FOUND
             )
         serializer = self.serializer_class(intro, many=True)
-        return Response({"status": "success", "devotions": serializer.data})
-
-
-class IntroDetailView(generics.GenericAPIView):
-    serializer_class = IntroSerializer
-    queryset = Intro.objects.all()
-
-    def get_intro(self, pk):
-        try:
-            return Intro.objects.get(pk=pk)
-        except:
-            return None
-
-    def get(self, request, pk):
-        intro = self.get_ministries_material(pk=pk)
-        if intro is None:
-            return Response(
-                {"status": "fail", "message": f"Intro with Id: {pk} not found"},
-                status=status.HTTP_404_NOT_FOUND,
-            )
-
-        serializer = self.serializer_class(intro)
-        return Response({"status": "success", "intro": serializer.data})
+        return Response({"status": "success", "result": serializer.data})
