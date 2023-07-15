@@ -1,8 +1,7 @@
 from django.urls import path
 
-from .views import ProfilesView, ProfilesDetailView
+from .views import ProfilesView
 
 urlpatterns = [
-    path('', ProfilesView.as_view()),
-    path('<uuid:pk>', ProfilesDetailView.as_view())
+    path('', ProfilesView.as_view())
 ]
