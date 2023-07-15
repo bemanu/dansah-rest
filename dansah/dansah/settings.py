@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "prayercity",
     "leadershipinstitute",
     "contact",
+    "home",
 ]
 
 MIDDLEWARE = [
