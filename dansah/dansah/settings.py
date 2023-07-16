@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-620=f6+r$hnusy%+p%(#=^%7$8v%+nhl#kaoc%bk0_kctdj5u0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 # Application definition
 INSTALLED_APPS = [
@@ -93,18 +95,7 @@ WSGI_APPLICATION = 'dansah.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-
-
-            'POSTGRES_URL': os.getenv('POSTGRES_URL'),
-            'POSTGRES_PRISMA_URL': os.getenv('POSTGRES_PRISMA_URL'),
-            'POSTGRES_URL_NON_POOLING': os.getenv('POSTGRES_URL_NON_POOLING'),
-            'POSTGRES_USER': os.getenv('POSTGRES_USER'),
-            'POSTGRES_HOST': os.getenv('POSTGRES_HOST'),
-            'POSTGRES_PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'POSTGRES_DATABASE': os.getenv('POSTGRES_DATABASE'),
-
- }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
 # DATABASES = {
 #     'default': {
