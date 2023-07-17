@@ -17,6 +17,7 @@ env = environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+USE_PRODUCTION = env("USE_PRODUCTION")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,9 +30,12 @@ with open(os.path.join(BASE_DIR, "secret_key.txt")) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
-CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
+if USE_PRODUCTION:
+    ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app"]
+    CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
+else:
+    ALLOWED_HOSTS = ["*"]
+    
 
 # Application definition
 INSTALLED_APPS = [
@@ -99,7 +103,6 @@ WSGI_APPLICATION = "dansah.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-USE_PRODUCTION = env("USE_PRODUCTION")
 print('USE_PRODUCTION')
 print(USE_PRODUCTION)
 if USE_PRODUCTION:
