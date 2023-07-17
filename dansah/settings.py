@@ -31,7 +31,7 @@ with open(os.path.join(BASE_DIR, "secret_key.txt")) as f:
 DEBUG = True
 
 if USE_PRODUCTION:
-    ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app"]
+    ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app", 'dansah-rest-production.up.railway.app']
     CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
 else:
     ALLOWED_HOSTS = ["*"]
