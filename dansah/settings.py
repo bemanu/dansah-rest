@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
 
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -94,12 +97,28 @@ WSGI_APPLICATION = "dansah.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+USE_PRODUCTION = env("USE_PRODUCTION")
+print('USE_PRODUCTION')
+print(USE_PRODUCTION)
+if USE_PRODUCTION:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env("PGDATABASE"),
+            'USER': env("PGUSER"),
+            'PASSWORD': env("PGPASSWORD"),
+            'HOST': env("PGHOST"),
+            'PORT': env("PGPORT"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+    
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -155,7 +174,7 @@ else:
     #     os.path.join(BASE_DIR, "static"),
     # ]
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
     # Extra places for collectstatic to find static files.
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),
                         ('admin', os.path.join(BASE_DIR, 'static', 'admin')))
