@@ -31,6 +31,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS=['dansah-rest-production.up.railway.app']
+
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
