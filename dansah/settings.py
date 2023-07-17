@@ -29,9 +29,9 @@ with open(os.path.join(BASE_DIR, "secret_key.txt")) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app"]
+ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS=["*"]
+CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
 
 # Application definition
 INSTALLED_APPS = [
