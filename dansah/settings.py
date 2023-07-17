@@ -31,7 +31,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS=['dansah-rest-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS=["*"]
 
 # Application definition
 INSTALLED_APPS = [
