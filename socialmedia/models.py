@@ -37,7 +37,7 @@ class Media(models.Model):
     class Meta:
         ordering = ("title", "created_at")
         verbose_name = "Media"
-        verbose_name_plural = "Medias"
+        verbose_name_plural = "Media"
 
     def __unicode__(self):
         return "%s: /n %s %s  %s %s" % (
