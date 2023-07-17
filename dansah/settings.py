@@ -17,7 +17,7 @@ env = environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-USE_PRODUCTION = env("USE_PRODUCTION")
+USE_PRODUCTION = env("USE_PRODUCTION") == 'True'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,12 +29,15 @@ with open(os.path.join(BASE_DIR, "secret_key.txt")) as f:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+print(USE_PRODUCTION)
 if USE_PRODUCTION:
+    print('232323')
     ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app", 'dansah-rest-production.up.railway.app']
     CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
 else:
-    ALLOWED_HOSTS = ["*"]
+    print('ciao')
+
+    ALLOWED_HOSTS=['localhost']
     
 
 # Application definition
@@ -76,8 +79,8 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-CORS_ORIGIN_WHITELIST = ("http://localhost:4200",)
-CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
+CORS_ORIGIN_WHITELIST = ("http://localhost:4200","https://dansah-rest-production.up.railway.app",)
+CORS_ALLOWED_ORIGINS = ["http://localhost:4200","https://dansah-rest-production.up.railway.app",]
 CORS_ALLOW_ALL = False
 
 ROOT_URLCONF = "dansah.urls"
@@ -103,8 +106,6 @@ WSGI_APPLICATION = "dansah.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-print('USE_PRODUCTION')
-print(USE_PRODUCTION)
 if USE_PRODUCTION:
     DATABASES = {
         'default': {
