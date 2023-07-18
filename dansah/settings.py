@@ -29,14 +29,12 @@ with open(os.path.join(BASE_DIR, "secret_key.txt")) as f:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+print("USE_PRODUCTION")
 print(USE_PRODUCTION)
 if USE_PRODUCTION:
-    print('232323')
-    ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app", 'dansah-rest-production.up.railway.app']
+    ALLOWED_HOSTS = ["https://dansah-rest-production.up.railway.app", 'dansah-rest-production.up.railway.app',]
     CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
 else:
-    print('ciao')
-
     ALLOWED_HOSTS=['localhost']
     
 
