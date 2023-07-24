@@ -1,7 +1,6 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 
-
 from .prayerconnectserializers import PrayerConnectSerializer
 from .models import PrayerConnect
 
