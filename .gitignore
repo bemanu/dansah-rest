@@ -58,3 +58,4 @@ target
 !**/migrations
 !**/migrations/__init__.py
 /static_cdn
+/*.env
