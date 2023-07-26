@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "profiles",
     "quoteoftheday",
     "role",
+    'storages',
     "powerliving",
     "socialmedia",
     "prayerconnect",
