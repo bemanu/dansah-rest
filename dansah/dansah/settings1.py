@@ -12,64 +12,42 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-import environ
-
-
-
-#import environ# Initialise environment variablesenv = environ.Env()environ.Env.read_env()
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-environ.Env.read_env()
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-620=f6+r$hnusy%+p%(#=^%7$8v%+nhl#kaoc%bk0_kctdj5u0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
-USE_PRODUCTION = env.bool("USE_PRODUCTION",True)
-
-if USE_PRODUCTION:
-    ALLOWED_HOSTS = ['*',]
-    #CSRF_TRUSTED_ORIGINS=["https://dansah-rest-production.up.railway.app"]
-else:
-    ALLOWED_HOSTS=[]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 # Application definition
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "corsheaders",
-    "homeactivities",
-    "homeevents",
-    "homeministriesmaterial",
-    "homeslider",
-    "profiles",
-    "quoteoftheday",
-    "role",
-    "powerliving",
-    "socialmedia",
-    "prayerconnect",
-    "prayercity",
-    "leadershipinstitute",
-    "contact",
-    "home",
-    "whitenoise.runserver_nostatic",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'homeactivities',
+    'homeevents',
+    'homeministriesmaterial',
+    'homeslider',
+    'profiles',
+    'quoteoftheday',
+    'role',
+    'powerliving',
+    'socialmedia',
+    'prayerconnect'
 ]
 
 MIDDLEWARE = [
@@ -80,9 +58,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+
+)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200"
+]
 CORS_ALLOW_ALL = False
+
 
 ROOT_URLCONF = 'dansah.urls'
 
@@ -108,11 +95,16 @@ WSGI_APPLICATION = 'dansah.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
+# DATABASES = {
+#     'default': {
+#
+#
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -142,37 +134,32 @@ USE_I18N = True
 
 USE_TZ = True
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STATIC_URL = 'static/'
+USE_S3 = os.getenv('USE_S3') == 'FALSE'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-USE_S3 = env.bool('USE_S3', False)
-
 
 if USE_S3:
-    print("using s3 settings")
     # aws settings
-    AWS_ACCESS_KEY_ID = env('AWS_S3_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env('AWS_S3_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = env('AWS_S3_STORAGE_BUCKET_NAME')
-    AWS_S3_ENDPOINT_URL = env('AWS_S3_HOST')
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
     AWS_DEFAULT_ACL = 'public-read'
-    # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # s3 static settings
     AWS_LOCATION = 'static'
-    STATIC_URL = f'https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}media/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+    STATIC_URL = 'static/'
     MEDIA_URL = '/media/'
+    # Default primary key field type
+    # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+    DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'media_root')
-
-
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
-SECURE_HSTS_SECONDS = 0
