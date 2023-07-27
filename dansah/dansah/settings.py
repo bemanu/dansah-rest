@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v@kgqe)@*3z^al!rre9zz!fjapr*im86!g)nzjzzlsjma-tfb5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,40 +135,62 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
+# AWS s3 Settings
+
+AWS_ACCESS_KEY_ID =  'AKIA3Z3JWIVIG3ME5CLQ' #os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = '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' #os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'dansah-rest-project' #os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+
+}
+AWS_QUERYSTRING_AUTH = False
+
+AWS_HEADERS = {
+    'Access-Control-Allow-Origin': '*',
+}
+# s3 static settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILE_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'media_root')
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USE_S3 = os.getenv('USE_S3', False)
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn",  'static')
 
-if USE_S3:
-    # aws settings
-    DATABASE_DATABASE = os.getenv('DATABASE_DATABASE')
-    DATABASE_URL = os.getenv('DATABASE_URL')
-    DATABASE_HOSTNAME = os.getenv('DATABASE_HOSTNAME')
-    DATABASE_PORT = os.getenv('DATABASE_PORT')
-    DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
-    DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
-
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-else:
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-    STATIC_URL = 'static/'
-    MEDIA_URL = '/media/'
-    # Default primary key field type
-    # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'media_root')
+# USE_S3 = os.getenv('USE_S3', False)
+#
+# if USE_S3:
+#     # aws settings
+#     DATABASE_DATABASE = os.getenv('DATABASE_DATABASE')
+#     DATABASE_URL = os.getenv('DATABASE_URL')
+#     DATABASE_HOSTNAME = os.getenv('DATABASE_HOSTNAME')
+#     DATABASE_PORT = os.getenv('DATABASE_PORT')
+#     DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
+#     DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
+#
+#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# else:
+#     # Static files (CSS, JavaScript, Images)
+#     # https://docs.djangoproject.com/en/4.2/howto/static-files/
+#
+#     STATIC_URL = 'static/'
+#     MEDIA_URL = '/media/'
+#     # Default primary key field type
+#     # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 0
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+# SECURE_SSL_REDIRECT = False
+# SECURE_HSTS_SECONDS = 0
