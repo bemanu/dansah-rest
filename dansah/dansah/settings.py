@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v@kgqe)@*3z^al!rre9zz!fjapr*im86!g)nzjzzlsjma-tfb5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -135,62 +135,49 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-
-# AWS s3 Settings
-
-AWS_ACCESS_KEY_ID =  'AKIA3Z3JWIVIG3ME5CLQ' #os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = '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' #os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'dansah-rest-project' #os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_DEFAULT_ACL = 'public-read'
-AWS_LOCATION = 'static'
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400'
-
-}
-AWS_QUERYSTRING_AUTH = False
-
-AWS_HEADERS = {
-    'Access-Control-Allow-Origin': '*',
-}
-# s3 static settings
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILE_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'media_root')
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn",  'static')
-
 # USE_S3 = os.getenv('USE_S3', False)
-#
-# if USE_S3:
-#     # aws settings
-#     DATABASE_DATABASE = os.getenv('DATABASE_DATABASE')
-#     DATABASE_URL = os.getenv('DATABASE_URL')
-#     DATABASE_HOSTNAME = os.getenv('DATABASE_HOSTNAME')
-#     DATABASE_PORT = os.getenv('DATABASE_PORT')
-#     DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
-#     DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
-#
-#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# else:
-#     # Static files (CSS, JavaScript, Images)
-#     # https://docs.djangoproject.com/en/4.2/howto/static-files/
-#
-#     STATIC_URL = 'static/'
-#     MEDIA_URL = '/media/'
-#     # Default primary key field type
-#     # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'static')
 
-# SESSION_COOKIE_SECURE = False
-# CSRF_COOKIE_SECURE = False
-# SECURE_SSL_REDIRECT = False
-# SECURE_HSTS_SECONDS = 0
+USE_S3 = os.getenv('USE_S3', False)
+
+STATIC_URL = '/static/'
+
+if USE_S3:
+    print("using S3 settings")
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_LOCATION = 'static'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    AWS_QUERYSTRING_AUTH = False
+    AWS_HEADERS = os.getenv('AWS_HEADERS')
+    print("statics files ")
+    # s3 static settings
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILE_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+else:
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    # MEDIA_URL = '/media/'
+    # MEDIA_ROOT = BASE_DIR / 'media'
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+
+    STATIC_URL = '/static/'
+    # Extra places for collectstatic to find static files.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = (
+        ('admin', os.path.join(BASE_DIR, 'static', 'admin')))
+
+    MEDIA_URL = "/media/"
+    # Default primary key field type
+    # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
