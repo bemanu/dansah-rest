@@ -50,10 +50,10 @@ INSTALLED_APPS = [
     "powerliving",
     "socialmedia",
     "prayerconnect",
-    # "prayercity",
-    # "leadershipinstitute",
-    # "contact",
-    # "home",
+    "prayercity",
+    "leadershipinstitute",
+    "contact",
+    "home",
     "whitenoise.runserver_nostatic",
 ]
 
@@ -158,7 +158,7 @@ if USE_S3:
     AWS_LOCATION = 'static'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     AWS_QUERYSTRING_AUTH = False
-    AWS_HEADERS = os.getenv('AWS_HEADERS')
+    AWS_HEADERS = {'Access-Control-Allow-Origin': '*'},
     print("statics files ")
     # s3 static settings
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
