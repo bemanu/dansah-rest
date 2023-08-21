@@ -19,20 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, 'dev.env'))
 
+ENVIRONMENT = env('ENVIRONMENT')
+print("<<<<<<<<<<<<<USING   " + ENVIRONMENT + ">>>>>>>>>>>>>>>>>>>>>>>")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
-print(SECRET_KEY + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-print(DEBUG + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-IS_DEV = env('IS_DEV')
-if IS_DEV:
-    print("read from env file<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>> " + IS_DEV)
 
 ALLOWED_HOSTS = []
 
@@ -99,12 +95,13 @@ WSGI_APPLICATION = 'dansah.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+IS_DEV = env('IS_DEV')
 
 if IS_DEV:
     DATABASES = {
         "default": {
-            "ENGINE": env('ENGINE'),
-            "NAME": env('DATABASE_NAME'),
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 else:
@@ -117,16 +114,13 @@ else:
             # "HOST": env('PGHOST'),
             # "PORT": env('PGPORT'),
 
-            "POSTGRES_DATABASE":  env('PGDATABASE'),
-            "POSTGRES_USER":  env('PGUSER'),
-            "POSTGRES_PASSWORD":  env('PGPASSWORD'),
-            "POSTGRES_HOST":  env('PGHOST'),
+            "POSTGRES_DATABASE": env('PGDATABASE'),
+            "POSTGRES_USER": env('PGUSER'),
+            "POSTGRES_PASSWORD": env('PGPASSWORD'),
+            "POSTGRES_HOST": env('PGHOST'),
             "POSTGRES_URL": env('PGURL'),
-            "POSTGRES_PRISMA_URL":  env('PGPRISMA_URL'),
-            "POSTGRES_URL_NON_POOLING":  env('PGURLNONPOOLING'),
-
-
-
+            "POSTGRES_PRISMA_URL": env('PGPRISMA_URL'),
+            "POSTGRES_URL_NON_POOLING": env('PGURLNONPOOLING'),
 
         }
     }
@@ -172,7 +166,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'static')
 
 USE_S3 = env('USE_S3')
-
+print(USE_S3 + "<<<<<<<<<<<USE_S3<<<<<<<<<<<<<<<<<<<<<<<,")
 if USE_S3:
     print("using S3 settings")
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
