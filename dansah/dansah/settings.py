@@ -166,7 +166,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'static')
 
 USE_S3 = env('USE_S3')
-print(USE_S3 + "<<<<<<<<<<<USE_S3<<<<<<<<<<<<<<<<<<<<<<<,")
+print(USE_S3 + "<<<<<<<<<<<USE_S3<<<<<<<<<<<<<<<<<<<<<<<<<,")
 if USE_S3:
     print("using S3 settings")
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
