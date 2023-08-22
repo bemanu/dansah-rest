@@ -114,13 +114,13 @@ else:
             # "HOST": env('PGHOST'),
             # "PORT": env('PGPORT'),
 
-            "POSTGRES_DATABASE": env('PGDATABASE'),
-            "POSTGRES_USER": env('PGUSER'),
-            "POSTGRES_PASSWORD": env('PGPASSWORD'),
-            "POSTGRES_HOST": env('PGHOST'),
-            "POSTGRES_URL": env('PGURL'),
-            "POSTGRES_PRISMA_URL": env('PGPRISMA_URL'),
-            "POSTGRES_URL_NON_POOLING": env('PGURLNONPOOLING'),
+            "POSTGRES_DATABASE": env('PG_DATABASE'),
+            "POSTGRES_USER": env('PG_USER'),
+            "POSTGRES_PASSWORD": env('PG_PASSWORD'),
+            "POSTGRES_HOST": env('PG_HOST'),
+            "POSTGRES_URL": env('PG_URL'),
+            "POSTGRES_PRISMA_URL": env('PG_PRISMA_URL'),
+            "POSTGRES_URL_NON_POOLING": env('PG_URL_NON_POOLING'),
 
         }
     }
