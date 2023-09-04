@@ -9,7 +9,7 @@ class HomeView(generics.GenericAPIView):
     serializer_class = HomeSerializer
     queryset = Home.objects.all()
 
-    def get(self, request):
+    def get(self):
         result = Home.objects.all()
         if not result:
             return Response(
