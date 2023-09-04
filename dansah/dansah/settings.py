@@ -115,7 +115,6 @@ else:
     print("productions settings")
     DATABASES = {
         "default": {
-
             # "ENGINE": env('DATABASE_ENGINE'),
             # "NAME": env('PGDATABASE'),
             # "USER": env('PGUSER'),
