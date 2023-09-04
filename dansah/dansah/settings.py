@@ -30,6 +30,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
+print("The value of debug <<<<<<<<====" + DEBUG)
+if DEBUG:
+    print("THis is in Debug")
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']
 
 # Application definition
@@ -99,7 +103,8 @@ WSGI_APPLICATION = 'dansah.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 IS_DEV = env('IS_DEV')
 
-if IS_DEV:
+if IS_DEV == "True":
+    print("this is dev settings <<<<<<<<<<<<<<<<< ==" + IS_DEV)
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -107,8 +112,10 @@ if IS_DEV:
         }
     }
 else:
+    print("productions settings")
     DATABASES = {
         "default": {
+
             # "ENGINE": env('DATABASE_ENGINE'),
             # "NAME": env('PGDATABASE'),
             # "USER": env('PGUSER'),
@@ -116,13 +123,13 @@ else:
             # "HOST": env('PGHOST'),
             # "PORT": env('PGPORT'),
 
-            "POSTGRES_DATABASE": env('PG_DATABASE'),
-            "POSTGRES_USER": env('PG_USER'),
-            "POSTGRES_PASSWORD": env('PG_PASSWORD'),
-            "POSTGRES_HOST": env('PG_HOST'),
-            "POSTGRES_URL": env('PG_URL'),
-            "POSTGRES_PRISMA_URL": env('PG_PRISMA_URL'),
-            "POSTGRES_URL_NON_POOLING": env('PG_URL_NON_POOLING'),
+            "POSTGRES_DATABASE": env('PGDATABASE'),
+            "POSTGRES_USER": env('PGUSER'),
+            "POSTGRES_PASSWORD": env('PGPASSWORD'),
+            "POSTGRES_HOST": env('PGHOST'),
+            "POSTGRES_URL": env('PGURL'),
+            "POSTGRES_PRISMA_URL": env('PGPRISMAURL'),
+            "POSTGRES_URL_NON_POOLING": env('PGURLNONPOOLING'),
 
         }
     }
@@ -155,8 +162,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -171,9 +176,8 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", 'static')
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
 
-
 USE_S3 = env('USE_S3')
-print(USE_S3 + "<<<<<<<<<<<USE_S3<<<<<<<<<<<<<<<<<<<<<<<<<,")
+print(USE_S3 + "<<<<<<<<<<<" + USE_S3 + " <<<<<<<<<<<<<<<<<<<<<<<<<,")
 if USE_S3:
     print("using S3 settings")
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
