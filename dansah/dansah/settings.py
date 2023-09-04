@@ -115,14 +115,13 @@ else:
     print("productions settings")
     DATABASES = {
         "default": {
-
             # "ENGINE": env('DATABASE_ENGINE'),
             # "NAME": env('PGDATABASE'),
             # "USER": env('PGUSER'),
             # "PASSWORD": env('PGPASSWORD'),
             # "HOST": env('PGHOST'),
             # "PORT": env('PGPORT'),
-
+            "ENGINE": "django.db.backends.postgresql",
             "POSTGRES_DATABASE": env('PGDATABASE'),
             "POSTGRES_USER": env('PGUSER'),
             "POSTGRES_PASSWORD": env('PGPASSWORD'),
