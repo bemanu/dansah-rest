@@ -122,7 +122,6 @@ else:
             "POSTGRES_URL": env('PGURL'),
             "POSTGRES_PRISMA_URL": env('PGPRISMAURL'),
             "POSTGRES_URL_NON_POOLING": env('PGURLNONPOOLING'),
-
         }
     }
 # Password validation
