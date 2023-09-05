@@ -115,6 +115,7 @@ else:
     print("productions settings database")
     DATABASES = {
         "default": {
+
             "POSTGRES_DATABASE": env('PGDATABASE'),
             "POSTGRES_USER": env('PGUSER'),
             "POSTGRES_PASSWORD": env('PGPASSWORD'),
