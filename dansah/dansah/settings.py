@@ -112,17 +112,10 @@ if IS_DEV == "True":
         }
     }
 else:
-    print("productions settings")
+    print("productions settings database")
     DATABASES = {
         "default": {
-            # "ENGINE": env('DATABASE_ENGINE'),
-            # "NAME": env('PGDATABASE'),
-            # "USER": env('PGUSER'),
-            # "PASSWORD": env('PGPASSWORD'),
-            # "HOST": env('PGHOST'),
-            # "PORT": env('PGPORT'),
-            # "ENGINE": "django.db.backends.postgresql",
-            "ENGINE": "postgresql",
+            "ENGINE": "django.db.backends.postgresql",
             "POSTGRES_DATABASE": env('PGDATABASE'),
             "POSTGRES_USER": env('PGUSER'),
             "POSTGRES_PASSWORD": env('PGPASSWORD'),
@@ -215,3 +208,11 @@ SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
 SECURE_HSTS_SECONDS = 0
+
+# "ENGINE": env('DATABASE_ENGINE'),
+# "NAME": env('PGDATABASE'),
+# "USER": env('PGUSER'),
+# "PASSWORD": env('PGPASSWORD'),
+# "HOST": env('PGHOST'),
+# "PORT": env('PGPORT'),
+# "ENGINE": "django.db.backends.postgresql",
